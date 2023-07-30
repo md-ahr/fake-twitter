@@ -1,6 +1,16 @@
-<div class="my-12">
-    <h1 class="text-3xl text-center font-bold text-primary">Welcome To Fake Twitter</h1>
-    <p class="mt-6 text-lg text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta sunt aut doloribus ullam repudiandae voluptatum amet quas consequatur aliquid, iusto esse accusantium ipsa perspiciatis, delectus harum quia? Totam, dolorum iusto.</p>
+<div *ngIf="!isLoggedIn" class="app-container flex items-start flex-wrap">
+    <router-outlet></router-outlet>
 </div>
 
-<router-outlet></router-outlet>
+<div *ngIf="isLoggedIn" class="app-container flex items-start flex-wrap">
+    <!-- Menu Sidebar -->
+    <app-menu-sidebar class="basis-[100%] md:basis-[25%]"></app-menu-sidebar>
+
+    <!-- Main Content -->
+    <div class="main-content basis-[100%] md:basis-[50%]">
+        <router-outlet>Feed</router-outlet>
+    </div>
+
+    <!-- User Sidebar -->
+    <app-user-sidebar class="basis-[100%] md:basis-[calc(25%-20px)] xl:basis-[calc(25%-30px)] ml-0 md:ml-[20px] xl:ml-[30px]"></app-user-sidebar>
+</div>

@@ -8,6 +8,8 @@ import { initFlowbite } from 'flowbite';
 export class AppComponent implements OnInit {
   title = 'fake-twitter';
 
+  isLoggedIn = false;
+
   ngOnInit(): void {
     initFlowbite();
   }
