@@ -2,16 +2,18 @@
   <router-outlet></router-outlet>
 </div>
 
-<div *ngIf="isLoggedIn" class="app-container flex items-start flex-wrap">
-  <!-- Menu Sidebar -->
-  <app-menu-sidebar class="basis-[100%] md:basis-[25%]"></app-menu-sidebar>
+<div *ngIf="isLoggedIn" class="bg-black h-screen">
+  <div class="app-container pt-2 flex items-start flex-wrap">
+    <!-- Menu Sidebar -->
+    <app-menu-sidebar class="basis-[100%] md:basis-[25%]"></app-menu-sidebar>
 
-  <!-- Main Content -->
-  <div class="main-content basis-[100%] md:basis-[50%]">
-    <router-outlet>Feed</router-outlet>
+    <!-- Main Content -->
+    <div class="main-content basis-[100%] md:basis-[50%]">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- User Sidebar -->
+    <app-user-sidebar
+      class="basis-[100%] md:basis-[calc(25%-20px)] xl:basis-[calc(25%-30px)] ml-0 md:ml-[20px] xl:ml-[30px]"></app-user-sidebar>
   </div>
-
-  <!-- User Sidebar -->
-  <app-user-sidebar
-    class="basis-[100%] md:basis-[calc(25%-20px)] xl:basis-[calc(25%-30px)] ml-0 md:ml-[20px] xl:ml-[30px]"></app-user-sidebar>
 </div>

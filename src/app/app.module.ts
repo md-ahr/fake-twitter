@@ -4,21 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { MenuSidebarComponent } from './shared/menu-sidebar/menu-sidebar.component';
-import { UserSidebarComponent } from './shared/user-sidebar/user-sidebar.component';
+import { SharedModule } from './shared/shared.module';
+import { UserSidebarComponent } from './shared/components/user-sidebar/user-sidebar.component';
+import { MenuSidebarComponent } from './shared/components/menu-sidebar/menu-sidebar.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenuSidebarComponent,
-    UserSidebarComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CoreModule,
-  ],
+  declarations: [AppComponent, UserSidebarComponent, MenuSidebarComponent],
+  imports: [BrowserModule, AppRoutingModule, CoreModule, SharedModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

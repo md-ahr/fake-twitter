@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 
 @Component({
@@ -8,9 +9,15 @@ import { initFlowbite } from 'flowbite';
 export class AppComponent implements OnInit {
   title = 'fake-twitter';
 
-  isLoggedIn = false;
+  isLoggedIn = true;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     initFlowbite();
+
+    if (this.isLoggedIn) {
+      this.router.navigate(['/home']);
+    }
   }
 }

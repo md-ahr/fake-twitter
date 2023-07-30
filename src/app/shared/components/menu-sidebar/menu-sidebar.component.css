@@ -1,0 +1,23 @@
+.navbar li {
+  @apply w-min mt-[14px] ml-[-14px] py-2.5 pl-4 pr-8 rounded-full transition duration-300 hover:bg-slate-900;
+}
+
+.navbar li a.active {
+  @apply font-bold;
+}
+
+svg {
+  @apply invert;
+}
+
+.logo-wrapper svg.logo {
+  @apply w-[35px];
+}
+
+.navbar svg {
+  @apply w-[26px];
+}
+
+.user svg {
+  @apply w-[40px] text-gray-800;
+}
