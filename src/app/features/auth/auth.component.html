@@ -1,1 +1,151 @@
-<p>auth works!</p>
+<div class="flex items-center flex-wrap">
+  <div
+    class="bg-[url('https://abs.twimg.com/sticky/illustrations/lohp_en_1302x955.png')] h-[500px] lg:h-screen basis-[100%] lg:basis-[55%] order-1 lg:order-0 grid place-content-center">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="w-[329px] invert">
+      <g>
+        <path
+          d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+        </path>
+      </g>
+    </svg>
+  </div>
+
+  <div
+    class="basis-[100%] lg:basis-[45%] order-0 lg:order-1 px-[30px] lg:pl-[36px] bg-black h-[700px] lg:h-screen text-white grid place-content-center justify-start">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="w-[45px] invert">
+      <g>
+        <path
+          d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+        </path>
+      </g>
+    </svg>
+
+    <h1 class="mt-[48px] lg:mt-[68px] text-[52px] lg:text-[64px] font-bold leading-tight">Happening now</h1>
+
+    <h4 class="mt-[36px] lg:mt-[50px] text-[26px] lg:text-[30px] font-bold">Join Twitter today.</h4>
+
+    <div class="mt-[30px]">
+      <button type="button" data-modal-toggle="signupModal"
+        class="w-full lg:w-[300px] h-[40px] text-white bg-primary hover:bg-blue-500 font-bold rounded-full text-[15px]">
+        Create Account
+      </button>
+
+      <p class="mt-2 w-[300px] text-[11px] text-gray-400">By signing up, you agree to the <a href=""
+          class="text-primary">Terms of Service</a>
+        and <a href="" class="text-primary">Privacy Policy</a>, including <a href="" class="text-primary">Cookie
+          Use.</a>
+      </p>
+
+      <!-- Signup Modal -->
+      <div id="signupModal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+        <div class="relative p-4 w-full max-w-xl h-full md:h-auto">
+          <!-- Modal content -->
+          <div class="relative pt-4 pb-6 px-5 bg-white rounded-lg shadow sm:pt-5 sm:pb-7 sm:px-6">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+              <h3 class="text-[24px] font-semibold text-gray-900">
+                Create your account
+              </h3>
+              <button type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                data-modal-toggle="signupModal">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <form class="px-6 sm:px-8">
+              <div class="mb-7">
+                <div>
+                  <label for="username" class="block mb-2 font-medium text-gray-900">Username</label>
+                  <input type="text" name="username" id="username"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-primary focus:border-blue-100 block w-full px-3.5 py-3"
+                    required>
+                </div>
+                <div class="mt-4">
+                  <label for="email" class="block mb-2 font-medium text-gray-900">Email</label>
+                  <input type="email" name="email" id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-primary focus:border-blue-100 block w-full px-3.5 py-3"
+                    required>
+                </div>
+                <div class="mt-4">
+                  <label for="password" class="block mb-2 font-medium text-gray-900">Password</label>
+                  <input type="password" name="password" id="password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-primary focus:border-blue-100 block w-full px-3.5 py-3"
+                    required>
+                </div>
+              </div>
+              <button type="submit"
+                class="w-full h-[52px] text-white bg-primary hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-400 text-[17px] rounded-full block mx-auto text-center font-bold">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-[40px] lg:mt-[60px]">
+      <p class="text-[17px] font-bold mb-[20px]">Already have an account?</p>
+
+      <button type="button" data-modal-toggle="signinModal"
+        class="w-full lg:w-[300px] h-[40px] text-primary bg-transparent font-bold rounded-full text-[15px] border border-primary hover:bg-white">
+        Sign in
+      </button>
+
+      <!-- Signin Modal -->
+      <div id="signinModal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+        <div class="relative p-4 w-full max-w-xl h-full md:h-auto">
+          <!-- Modal content -->
+          <div class="relative pt-4 pb-6 px-5 bg-white rounded-lg shadow sm:pt-5 sm:pb-7 sm:px-6">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+              <h3 class="text-[24px] font-semibold text-gray-900">
+                Sign in to Twitter
+              </h3>
+              <button type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                data-modal-toggle="signinModal">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <form class="px-6 sm:px-8">
+              <div class="mb-7">
+                <div>
+                  <label for="email" class="block mb-2 font-medium text-gray-900">Email</label>
+                  <input type="email" name="email" id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-primary focus:border-blue-100 block w-full px-3.5 py-3"
+                    required />
+                </div>
+                <div class="mt-4">
+                  <label for="password" class="block mb-2 font-medium text-gray-900">Password</label>
+                  <input type="password" name="password" id="password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-primary focus:border-blue-100 block w-full px-3.5 py-3"
+                    required />
+                </div>
+              </div>
+              <button type="submit"
+                class="w-full h-[52px] text-white bg-primary hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-400 text-[17px] rounded-full block mx-auto text-center font-bold">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
