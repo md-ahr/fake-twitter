@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.app-container {
+    max-width: 95%;
+    margin-inline: auto;
+}
+
+@media screen and (min-width: 768px) {
+    .app-container {
+        max-width: 90%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .app-container {
+        max-width: 85%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .app-container {
+        max-width: 80%;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .app-container {
+        max-width: 75%;
+    }
+}
