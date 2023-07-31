@@ -3,6 +3,7 @@
 </div>
 
 <div *ngIf="isLoggedIn" class="bg-black min-h-screen">
+  {{ isLoggedIn ? 'achi' : '' }}
   <div class="app-container flex items-start flex-wrap">
     <!-- Menu Sidebar -->
     <app-menu-sidebar class="pt-2 basis-[10%] xl:basis-[22%]"></app-menu-sidebar>
