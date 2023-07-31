@@ -39,9 +39,14 @@ export class AuthService {
     );
   }
 
+  isLoggedIn(): boolean {
+    const token = this.cookieService.get('token');
+    return !!token;
+  }
+
   logout(): void {
     this.tokenSubject.next('');
     this.cookieService.delete('token');
-    this.router.navigate(['/']);
+    this.router.navigateByUrl('/');
   }
 }

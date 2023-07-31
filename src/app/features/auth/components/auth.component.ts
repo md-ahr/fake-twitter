@@ -16,6 +16,8 @@ export class AuthComponent {
   loginForm: FormGroup;
 
   isSuccess: boolean = false;
+  isLoginShow: boolean = false;
+  isRegisterShow: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -72,7 +74,7 @@ export class AuthComponent {
             this.isSuccess = true;
             this.cookieService.set('token', response.token);
             this.toastr.success('User logged in successfully');
-            this.router.navigate(['/home']);
+            this.router.navigateByUrl('/home');
           }
         },
         error: (err) => {

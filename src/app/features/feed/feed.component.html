@@ -1,8 +1,4 @@
-<div *ngIf="!isLoggedIn">
-  <router-outlet></router-outlet>
-</div>
-
-<div *ngIf="isLoggedIn" class="bg-black min-h-screen">
+<div class="bg-black min-h-screen">
   <div class="app-container flex items-start flex-wrap">
     <!-- Menu Sidebar -->
     <app-menu-sidebar class="pt-2 basis-[10%] xl:basis-[22%]"></app-menu-sidebar>
@@ -18,6 +14,3 @@
       class="pt-2 hidden lg:block basis-[calc(30%-20px)] xl:basis-[calc(28%-20px)] 2xl:basis-[calc(28%-30px)] ml-0 lg:ml-[20px] 2xl:ml-[30px]"></app-user-sidebar>
   </div>
 </div>
-
-
-<router-outlet></router-outlet>

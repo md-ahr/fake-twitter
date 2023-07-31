@@ -10,21 +10,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { UserSidebarComponent } from './shared/components/user-sidebar/user-sidebar.component';
-import { MenuSidebarComponent } from './shared/components/menu-sidebar/menu-sidebar.component';
 import { AuthModule } from './features/auth/auth.module';
+import { FeedModule } from './features/feed/feed.module';
 
 @NgModule({
-  declarations: [AppComponent, UserSidebarComponent, MenuSidebarComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
     CoreModule,
+    ToastrModule.forRoot(),
     SharedModule,
     AuthModule,
+    FeedModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

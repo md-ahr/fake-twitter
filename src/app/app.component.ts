@@ -33,9 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.tokenFromCookie) {
       this.isLoggedIn = true;
       this.router.navigate(['/home']);
-    } else {
-      this.isLoggedIn = false;
-      this.router.navigate(['/']);
     }
   }
 

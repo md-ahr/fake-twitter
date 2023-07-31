@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AuthService } from './../../../features/auth/auth.service';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-menu-sidebar',
