@@ -1,5 +1,5 @@
 .navbar li {
-  @apply w-min mt-[14px] ml-[-14px] py-2.5 pl-4 pr-8 rounded-full transition duration-300 hover:bg-slate-900;
+  @apply w-min mt-[4px] sm:mt-[8px] xl:mt-[14px] ml-[-14px] py-4 xl:py-2.5 px-4 xl:pl-4 xl:pr-8 rounded-full transition duration-300 hover:bg-slate-900;
 }
 
 .navbar li a.active {

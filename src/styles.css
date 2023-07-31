@@ -17,18 +17,6 @@
     }
 }
 
-@media screen and (min-width: 992px) {
-    .app-container {
-        max-width: 80%;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    .app-container {
-        max-width: 75%;
-    }
-}
-
 @media screen and (min-width: 1400px) {
     .app-container {
         max-width: 70%;

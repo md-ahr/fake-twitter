@@ -11,7 +11,7 @@
 
   <ul class="navbar mt-6">
     <li>
-      <a href="" class="flex items-center gap-5 text-white text-[20px] active">
+      <a href="" class="flex items-center gap-5 text-white text-[20px] active" title="Home">
         <div class="relative">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -22,11 +22,11 @@
           </svg>
           <div class="w-[7px] h-[7px] bg-primary rounded-full absolute top-[-4px] right-[1px]"></div>
         </div>
-        Home
+        <span class="hidden xl:block">Home</span>
       </a>
     </li>
     <li>
-      <a href="" class="flex items-center gap-5 text-white text-[20px]">
+      <a href="" class="flex items-center gap-5 text-white text-[20px]" title="Explore">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <g>
             <path
@@ -34,11 +34,11 @@
             </path>
           </g>
         </svg>
-        Explore
+        <span class="hidden xl:block">Explore</span>
       </a>
     </li>
     <li>
-      <a href="" class="flex items-center gap-5 text-white text-[20px]">
+      <a href="" class="flex items-center gap-5 text-white text-[20px]" title="Notifications">
         <div class="relative">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -51,11 +51,11 @@
             class="absolute bg-primary w-[18px] h-[18px] rounded-full top-[-6px] right-[-4px] grid place-content-center text-[11px]">
             3</div>
         </div>
-        Notifications
+        <span class="hidden xl:block">Notifications</span>
       </a>
     </li>
     <li>
-      <a href="" class="flex items-center gap-5 text-white text-[20px]">
+      <a href="" class="flex items-center gap-5 text-white text-[20px]" title="Messages">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <g>
             <path
@@ -63,11 +63,11 @@
             </path>
           </g>
         </svg>
-        Messages
+        <span class="hidden xl:block">Messages</span>
       </a>
     </li>
     <li>
-      <a href="" class="flex items-center gap-5 text-white text-[20px]">
+      <a href="" class="flex items-center gap-5 text-white text-[20px]" title="Lists">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <g>
             <path
@@ -75,11 +75,11 @@
             </path>
           </g>
         </svg>
-        Lists
+        <span class="hidden xl:block">Lists</span>
       </a>
     </li>
     <li>
-      <a href="" class="flex items-center gap-5 text-white text-[20px]">
+      <a href="" class="flex items-center gap-5 text-white text-[20px]" title="Bookmarks">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <g>
             <path
@@ -87,11 +87,11 @@
             </path>
           </g>
         </svg>
-        Bookmarks
+        <span class="hidden xl:block">Bookmarks</span>
       </a>
     </li>
     <li>
-      <a href="" class="flex items-center gap-5 text-white text-[20px]">
+      <a href="" class="flex items-center gap-5 text-white text-[20px]" title="Communities">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <g>
             <path
@@ -99,11 +99,11 @@
             </path>
           </g>
         </svg>
-        Communities
+        <span class="hidden xl:block">Communities</span>
       </a>
     </li>
     <li>
-      <a href="" class="flex items-center gap-5 text-white text-[20px]">
+      <a href="" class="flex items-center gap-5 text-white text-[20px]" title="Verified">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <g>
             <path
@@ -111,11 +111,11 @@
             </path>
           </g>
         </svg>
-        Verified
+        <span class="hidden xl:block">Verified</span>
       </a>
     </li>
     <li>
-      <a href="" class="flex items-center gap-5 text-white text-[20px]">
+      <a href="" class="flex items-center gap-5 text-white text-[20px]" title="Profile">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <g>
             <path
@@ -123,26 +123,38 @@
             </path>
           </g>
         </svg>
-        Profile
+        <span class="hidden xl:block">Profile</span>
       </a>
     </li>
   </ul>
 
   <button
-    class="mt-[25px] w-[230px] h-[52px] bg-primary rounded-full font-bold text-[17px] text-white transition duration-300 hover:bg-blue-500">Tweet</button>
+    class="grid place-content-center mt-[15px] xl:mt-[25px] w-[50px] xl:w-[94%] h-[50px] xl:h-[52px] bg-primary rounded-full font-bold text-[17px] text-white transition duration-300 hover:bg-blue-500"
+    title="Tweet">
+    <span class="hidden xl:block">Tweet</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="w-[24px] invert block xl:hidden">
+      <g>
+        <path
+          d="M23 3c-6.62-.1-10.38 2.421-13.05 6.03C7.29 12.61 6 17.331 6 22h2c0-1.007.07-2.012.19-3H12c4.1 0 7.48-3.082 7.94-7.054C22.79 10.147 23.17 6.359 23 3zm-7 8h-1.5v2H16c.63-.016 1.2-.08 1.72-.188C16.95 15.24 14.68 17 12 17H8.55c.57-2.512 1.57-4.851 3-6.78 2.16-2.912 5.29-4.911 9.45-5.187C20.95 8.079 19.9 11 16 11zM4 9V6H1V4h3V1h2v3h3v2H6v3H4z">
+        </path>
+      </g>
+    </svg>
+  </button>
 
-  <div class="user fixed bottom-[25px] cursor-pointer ml-[-14px]">
+  <div
+    class="pt-[20px] xl:pt-[100px] user cursor-pointer ml-[-14px]"
+    title="Accounts">
     <div data-popover-target="popover-click" data-popover-trigger="click" type="button"
-      class="flex items-center gap-[12px] hover:bg-slate-900 transition duration-300 rounded-full py-2.5 px-4">
+      class="flex items-center gap-[12px] xl:gap-[8px] hover:bg-slate-900 transition duration-300 rounded-full py-2.5 px-4 xl:px-3">
       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
         <path
           d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
       </svg>
-      <div class="text-[15px]">
+      <div class="text-[15px] hidden xl:block">
         <p class="text-white font-bold">MD. Abdul Halim</p>
         <p class="text-gray-500">@AHR007</p>
       </div>
-      <svg viewBox="0 0 24 24" aria-hidden="true" class="invert h-[18px] ml-4">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="invert h-[18px] ml-3 2xl:ml-4 hidden xl:block">
         <g>
           <path
             d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z">
