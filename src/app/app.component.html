@@ -5,15 +5,15 @@
 <div *ngIf="isLoggedIn" class="bg-black h-screen">
   <div class="app-container flex items-start flex-wrap">
     <!-- Menu Sidebar -->
-    <app-menu-sidebar class="pt-2 basis-[100%] md:basis-[20%]"></app-menu-sidebar>
+    <app-menu-sidebar class="pt-2 basis-[100%] md:basis-[22%]"></app-menu-sidebar>
 
     <!-- Main Content -->
-    <div class="main-content basis-[100%] md:basis-[60%] border-l border-r border-slate-700">
+    <div class="main-content basis-[100%] md:basis-[50%] border-l border-r border-slate-700">
       <router-outlet></router-outlet>
     </div>
 
     <!-- User Sidebar -->
     <app-user-sidebar
-      class="pt-2 basis-[100%] md:basis-[calc(20%-20px)] xl:basis-[calc(20%-30px)] ml-0 md:ml-[20px] xl:ml-[30px]"></app-user-sidebar>
+      class="pt-2 basis-[100%] md:basis-[calc(28%-20px)] xl:basis-[calc(28%-30px)] ml-0 md:ml-[20px] xl:ml-[30px]"></app-user-sidebar>
   </div>
 </div>
