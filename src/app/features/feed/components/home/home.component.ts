@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.feedService.getTimeline().subscribe((response) => {
       this.count = response.count;
-      this.timelines = response.timeline;
+      this.timelines = response.timeline;      
     });
 
     this.feedService.getMyTweets().subscribe((response) => {

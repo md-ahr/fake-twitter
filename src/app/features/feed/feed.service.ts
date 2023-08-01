@@ -30,6 +30,10 @@ export class FeedService {
     );
   }
 
+  postTweet(data: unknown) {
+    return this.http.post<any>(`${environment.BASE_API_URL}/tweet`, data);
+  }
+
   getTimeline(): Observable<any> {
     return this.http.get<any>(`${environment.BASE_API_URL}/timeline`);
   }
