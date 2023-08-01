@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FeedRoutingModule } from './feed-routing.module';
 import { UserSidebarComponent } from './components/user-sidebar/user-sidebar.component';
 import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.com
     FeedComponent,
     UserSidebarComponent,
     MenuSidebarComponent,
+    UsersComponent,
   ],
   imports: [CommonModule, SharedModule, FeedRoutingModule],
   exports: [
@@ -20,6 +22,7 @@ import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.com
     FeedComponent,
     UserSidebarComponent,
     MenuSidebarComponent,
+    UsersComponent,
   ],
 })
 export class FeedModule {}

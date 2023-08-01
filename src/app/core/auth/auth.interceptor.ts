@@ -27,7 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const accessToken = this.cookieService.get('token');
 
-    if (location.pathname === '/') {
+    if (location.pathname === '/login') {
       return next.handle(request);
     }
 
@@ -46,7 +46,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return next.handle(authReq);
       }
     } else {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/login');
       return throwError('No token found, Please log in');
     }
   }
