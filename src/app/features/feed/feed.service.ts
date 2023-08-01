@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,7 +9,17 @@ import { environment } from 'src/environments/environment';
 export class FeedService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<User> {
-    return this.http.get<User>(`${environment.BASE_API_URL}/users`);
+  getUsers(page?: number, size?: number): Observable<any> {
+    return this.http.get<any>(
+      `${environment.BASE_API_URL}/users?page=${page}&size=${size}`
+    );
+  }
+
+  getTimeline(): Observable<any> {
+    return this.http.get<any>(`${environment.BASE_API_URL}/timeline`);
+  }
+
+  getMyTweets(): Observable<any> {
+    return this.http.get<any>(`${environment.BASE_API_URL}/my-tweets`);
   }
 }
