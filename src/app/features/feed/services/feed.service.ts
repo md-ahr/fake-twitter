@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class FeedService {
   private currentPage = 1;
   private pageSize = 30;
+  private newTweetPosted: boolean = false;
 
   private refreshTweets$: Subject<void> = new Subject<void>();
   private tweets$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -18,6 +19,14 @@ export class FeedService {
       this.fetchTweets();
       this.getNextTweetsPage();
     });
+  }
+
+  setNewTweetPosted(value: boolean) {
+    this.newTweetPosted = value;
+  }
+
+  isNewTweetPosted(): boolean {
+    return this.newTweetPosted;
   }
 
   getNextTweetsPage(): Observable<any> {

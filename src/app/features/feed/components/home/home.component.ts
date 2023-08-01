@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   loadNextPage(): void {
-    if (!this.isLoading) {
+    if (!this.isLoading && !this.feedService.isNewTweetPosted()) {
       this.isLoading = true;
       this.feedService.getNextTweetsPage().subscribe((tweetData) => {
         this.tweets = [...this.tweets, ...tweetData];

@@ -11,8 +11,8 @@ import { FeedService } from './../../services/feed.service';
 })
 export class CreateTweetComponent {
   tweetForm: FormGroup;
-  isBtnEnabled: boolean = false;
   tweets$!: Observable<any[]>;
+  isBtnEnabled: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,7 +25,7 @@ export class CreateTweetComponent {
 
     if (this.tweetForm.valid) {
       this.isBtnEnabled = true;
-    } 
+    }
   }
 
   ngOnInit(): void {
@@ -43,6 +43,7 @@ export class CreateTweetComponent {
         next: (response) => {
           if (response.message) {
             this.tweetForm.reset();
+            this.feedService.setNewTweetPosted(true);
             this.feedService.refreshTweets();
             this.toastr.success(response.message);
           }
