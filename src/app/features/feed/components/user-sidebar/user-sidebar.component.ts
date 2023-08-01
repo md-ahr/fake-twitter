@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FeedService } from './../../feed.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-sidebar',
@@ -11,12 +11,12 @@ export class UserSidebarComponent implements OnInit {
   users: any[] = [];
 
   page: number = 1;
-  size: number = 10;
+  size: number = 6;
 
-  constructor(private feedService: FeedService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.feedService.getUsers(this.page, this.size).subscribe((response) => {
+    this.userService.getUsers(this.page, this.size).subscribe((response) => {
       this.count = response.count;
       this.users = response.users;
     });

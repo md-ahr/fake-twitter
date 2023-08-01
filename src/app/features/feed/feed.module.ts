@@ -10,6 +10,7 @@ import { UsersComponent } from './components/users/users.component';
 import { FeedComponent } from './components/feed.component';
 import { UserItemComponent } from './components/user-item/user-item.component';
 import { CreateTweetComponent } from './components/create-tweet/create-tweet.component';
+import { TweetItemComponent } from './components/tweet-item/tweet-item.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CreateTweetComponent } from './components/create-tweet/create-tweet.com
     UsersComponent,
     UserItemComponent,
     CreateTweetComponent,
+    TweetItemComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, SharedModule, FeedRoutingModule],
   exports: [
@@ -30,6 +32,7 @@ import { CreateTweetComponent } from './components/create-tweet/create-tweet.com
     UsersComponent,
     UserItemComponent,
     CreateTweetComponent,
+    TweetItemComponent,
   ],
 })
 export class FeedModule {}

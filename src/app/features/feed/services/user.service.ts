@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class FeedService {
+export class UserService {
   private currentPage = 1;
   private pageSize = 30;
 
@@ -28,17 +28,5 @@ export class FeedService {
     return this.http.get<any>(
       `${environment.BASE_API_URL}/users?page=${page}&size=${size}`
     );
-  }
-
-  postTweet(data: unknown) {
-    return this.http.post<any>(`${environment.BASE_API_URL}/tweet`, data);
-  }
-
-  getTimeline(): Observable<any> {
-    return this.http.get<any>(`${environment.BASE_API_URL}/timeline`);
-  }
-
-  getMyTweets(): Observable<any> {
-    return this.http.get<any>(`${environment.BASE_API_URL}/my-tweets`);
   }
 }

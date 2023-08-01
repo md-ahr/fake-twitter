@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
-import { FeedService } from '../../feed.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-users',
@@ -9,17 +9,13 @@ import { FeedService } from '../../feed.service';
 export class UsersComponent {
   users: any[] = [];
   data: any[] = [];
-
-  page: number = 1;
-  size: number = 30;
-
   private threshold = 200;
   isLoading: boolean = false;
 
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
-    private feedService: FeedService
+    private userService: UserService
   ) {
     this.loadNextPage();
   }
@@ -27,7 +23,7 @@ export class UsersComponent {
   loadNextPage(): void {
     if (!this.isLoading) {
       this.isLoading = true;
-      this.feedService.getNextUsersPage().subscribe((userData) => {
+      this.userService.getNextUsersPage().subscribe((userData) => {
         this.data.push(...userData);
         this.isLoading = false;
       });
@@ -40,7 +36,7 @@ export class UsersComponent {
       !this.isLoading &&
       window.innerHeight + window.scrollY >=
         document.body.offsetHeight - this.threshold &&
-      this.data.length % this.feedService.getPageSize() === 0
+      this.data.length % this.userService.getPageSize() === 0
     ) {
       this.threshold += 500;
       this.loadNextPage();

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscribable } from 'rxjs';
+import { Observable, Subscribable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { FeedService } from './../../feed.service';
+import { FeedService } from './../../services/feed.service';
 
 @Component({
   selector: 'app-create-tweet',
@@ -11,8 +11,8 @@ import { FeedService } from './../../feed.service';
 })
 export class CreateTweetComponent {
   tweetForm: FormGroup;
-
   isBtnEnabled: boolean = false;
+  tweets$!: Observable<any[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,7 +25,12 @@ export class CreateTweetComponent {
 
     if (this.tweetForm.valid) {
       this.isBtnEnabled = true;
-    }
+    } 
+  }
+
+  ngOnInit(): void {
+    this.tweets$ = this.feedService.getMyTweets();
+    this.feedService.refreshTweets();
   }
 
   postTweet() {
@@ -36,8 +41,9 @@ export class CreateTweetComponent {
 
       tweetSubscribable.subscribe({
         next: (response) => {
-          if (response) {
+          if (response.message) {
             this.tweetForm.reset();
+            this.feedService.refreshTweets();
             this.toastr.success(response.message);
           }
         },

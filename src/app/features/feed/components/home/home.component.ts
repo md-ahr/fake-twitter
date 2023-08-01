@@ -5,7 +5,7 @@ import {
   ElementRef,
   Renderer2,
 } from '@angular/core';
-import { FeedService } from './../../feed.service';
+import { FeedService } from '../../services/feed.service';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +13,12 @@ import { FeedService } from './../../feed.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  count: number = 0;
-  timelines: any[] = [];
   tweets: any[] = [];
+  timelines: any[] = [];
+  tweetCount: number = 0;
+  timelineCount: number = 0;
+  private threshold = 200;
+  isLoading: boolean = false;
 
   constructor(
     private el: ElementRef,
@@ -23,20 +26,41 @@ export class HomeComponent implements OnInit {
     private feedService: FeedService
   ) {}
 
+  loadNextPage(): void {
+    if (!this.isLoading) {
+      this.isLoading = true;
+      this.feedService.getNextTweetsPage().subscribe((tweetData) => {
+        this.tweets = [...this.tweets, ...tweetData];
+        this.isLoading = false;
+      });
+    }
+  }
+
   ngOnInit(): void {
-    this.feedService.getTimeline().subscribe((response) => {
-      this.count = response.count;
-      this.timelines = response.timeline;      
+    this.feedService.getMyTweets().subscribe((response) => {
+      this.tweetCount = response.count;
+      this.tweets = response.my_tweets;
     });
 
-    this.feedService.getMyTweets().subscribe((response) => {
-      this.count = response.count;
-      this.tweets = response.my_tweets;
+    this.feedService.getTimeline().subscribe((response) => {
+      this.timelineCount = response.count;
+      this.timelines = response.timeline;
     });
   }
 
   @HostListener('window:scroll', [])
   onScroll(): void {
+    if (
+      !this.isLoading &&
+      window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - this.threshold &&
+      this.tweets &&
+      this.tweets.length % this.feedService.getPageSize() === 0
+    ) {
+      this.threshold += 500;
+      this.loadNextPage();
+    }
+
     const shouldAddClass = window.scrollY > 80;
     const element = this.el.nativeElement.querySelector('.sticky-bar');
     if (shouldAddClass) {
