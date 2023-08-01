@@ -5,12 +5,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://missingdata.pythonanywhere.com';
   private tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
     ''
   );
@@ -26,11 +26,11 @@ export class AuthService {
   }
 
   signup(data: User): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/signup`, data);
+    return this.http.post<User>(`${environment.BASE_API_URL}/signup`, data);
   }
 
   login(data: User): Observable<User> {
-    return this.http.post<any>(`${this.apiUrl}/login`, data).pipe(
+    return this.http.post<any>(`${environment.BASE_API_URL}/login`, data).pipe(
       map((response) => {
         const token = response.token;
         this.tokenSubject.next(token);
