@@ -10,8 +10,8 @@ export class UserSidebarComponent implements OnInit {
   count: number = 0;
   users: any[] = [];
 
-  page?: number = 1;
-  size?: number = 10;
+  page: number = 1;
+  size: number = 10;
 
   constructor(private feedService: FeedService) {}
 
