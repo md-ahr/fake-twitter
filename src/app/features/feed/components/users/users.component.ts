@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { FeedService } from '../../feed.service';
 
 @Component({
@@ -16,7 +16,11 @@ export class UsersComponent {
   private threshold = 200;
   isLoading: boolean = false;
 
-  constructor(private feedService: FeedService) {
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private feedService: FeedService
+  ) {
     this.loadNextPage();
   }
 
@@ -40,6 +44,20 @@ export class UsersComponent {
     ) {
       this.threshold += 500;
       this.loadNextPage();
+    }
+
+    const shouldAddClass = window.scrollY > 80;
+    const element = this.el.nativeElement.querySelector('.sticky-bar');
+    if (shouldAddClass) {
+      this.renderer.addClass(element, 'bg-gray-900');
+      this.renderer.addClass(element, 'transition');
+      this.renderer.addClass(element, 'duration-300');
+      this.renderer.addClass(element, 'pt-3');
+      this.renderer.addClass(element, 'pb-4');
+    } else {
+      this.renderer.removeClass(element, 'bg-gray-900');
+      this.renderer.removeClass(element, 'pt-3');
+      this.renderer.removeClass(element, 'pb-4');
     }
   }
 }

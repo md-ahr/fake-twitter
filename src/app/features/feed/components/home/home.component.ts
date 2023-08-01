@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnInit,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { FeedService } from './../../feed.service';
 
 @Component({
@@ -11,7 +17,11 @@ export class HomeComponent implements OnInit {
   timelines: any[] = [];
   tweets: any[] = [];
 
-  constructor(private feedService: FeedService) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private feedService: FeedService
+  ) {}
 
   ngOnInit(): void {
     this.feedService.getTimeline().subscribe((response) => {
@@ -23,5 +33,18 @@ export class HomeComponent implements OnInit {
       this.count = response.count;
       this.tweets = response.my_tweets;
     });
+  }
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    const shouldAddClass = window.scrollY > 80;
+    const element = this.el.nativeElement.querySelector('.sticky-bar');
+    if (shouldAddClass) {
+      this.renderer.addClass(element, 'bg-gray-900');
+      this.renderer.addClass(element, 'transition');
+      this.renderer.addClass(element, 'duration-300');
+    } else {
+      this.renderer.removeClass(element, 'bg-gray-900');
+    }
   }
 }
