@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
 export class UserService {
   private currentPage = 1;
   private pageSize = 30;
-  tweets: any;
 
   constructor(private http: HttpClient, private feedService: FeedService) {}
 
@@ -32,9 +31,15 @@ export class UserService {
     );
   }
 
-  followUser(userId: number): Observable<any> {
-    console.log(userId, `${environment.BASE_API_URL}/follow`);
-    
-    return this.http.post<any>(`${environment.BASE_API_URL}/follow`, userId);
+  followUser(data: any): Observable<any> {
+    return this.http.post<any>(`${environment.BASE_API_URL}/follow`, data);
+  }
+
+  unfollowUser(data: any): Observable<any> {
+    return this.http.post<any>(`${environment.BASE_API_URL}/unfollow`, data);
+  }
+
+  getFollowings(): Observable<any> {
+    return this.http.get<any>(`${environment.BASE_API_URL}/following`);
   }
 }

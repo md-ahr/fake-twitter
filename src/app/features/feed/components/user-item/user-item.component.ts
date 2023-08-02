@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Subscribable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from './../../services/user.service';
-import { FeedService } from '../../services/feed.service';
 
 @Component({
   selector: 'app-user-item',
@@ -16,35 +16,63 @@ export class UserItemComponent {
 
   constructor(
     private userService: UserService,
-    private toastr: ToastrService,
-    private feedService: FeedService
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
+    this.userService.getFollowings().subscribe({
+      next: (response) => {
+        response.followings?.find((user: any) => {
+          if (user.id === this.user.id) {
+            this.isFollowed = true;
+          }
+        });
+      },
+      error: (err) => {
+        this.toastr.error('Failed to get followings user data');
+      },
+    });
   }
 
-  followUser() {
-    // const data: any = {
-    //   user_id: this.userId,
-    // };
+  followUser(userId: number) {
+    const data: any = {
+      user_id: userId,
+    };
 
-    // console.log(this.userId);
+    const tweetSubscribable: Subscribable<any> =
+      this.userService.followUser(data);
 
-    // const tweetSubscribable: Subscribable<any> =
-    //   this.userService.followUser(data);
-
-    // tweetSubscribable.subscribe({
-    //   next: (response) => {
-    //     if (response.resp) {
-    //       this.isFollowed = true;
-    //       this.toastr.success(response.message);
-    //     }
-    //   },
-    //   error: (err) => {
-    //     this.toastr.error('Failed to follow user');
-    //   },
-    // });
+    tweetSubscribable.subscribe({
+      next: (response) => {
+        if (response.resp) {
+          this.isFollowed = true;
+          this.toastr.success('Successfully followed');
+        }
+      },
+      error: (err) => {
+        this.toastr.error('Failed to follow user');
+      },
+    });
   }
 
-  unfollowUser() {}
+  unfollowUser(userId: number) {
+    const data: any = {
+      user_id: userId,
+    };
+
+    const tweetSubscribable: Subscribable<any> =
+      this.userService.unfollowUser(data);
+
+    tweetSubscribable.subscribe({
+      next: (response) => {
+        if (response.resp) {
+          this.isFollowed = false;
+          this.toastr.success('Successfully unfollowed');
+        }
+      },
+      error: (err) => {
+        this.toastr.error('Failed to unfollow user');
+      },
+    });
+  }
 }

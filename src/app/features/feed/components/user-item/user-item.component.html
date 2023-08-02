@@ -10,8 +10,8 @@
     <p class="text-white min-w-[90px] break-all">{{ user.email }}</p>
     <p class="mt-[-2px] text-gray-500"><span class="mr-[-2px]">@</span> {{ user.username }}</p>
   </a>
-  <button type="button" *ngIf="!isFollowed" (click)="followUser()"
+  <button type="button" *ngIf="!isFollowed" (click)="followUser(user.id)"
     class="min-w-[78px] h-[32px] ml-auto font-bold text-[14px] rounded-full bg-white text-black hover:bg-primary hover:text-white transition duration-300">Follow</button>
-  <button type="button" *ngIf="isFollowed" (click)="unfollowUser()"
-    class="min-w-[78px] h-[32px] ml-auto font-bold text-[14px] rounded-full bg-white text-black hover:bg-primary hover:text-white transition duration-300">Following</button>
+  <button type="button" *ngIf="isFollowed" (click)="unfollowUser(user.id)"
+    class="min-w-[78px] h-[32px] ml-auto font-bold text-[13px] rounded-full bg-white text-primary hover:bg-primary hover:text-white transition duration-300">Following</button>
 </div>

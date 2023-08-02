@@ -7,7 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TweetItemComponent {
   @Input() tweet: any;
-  @Input() timeline: any;
 
   formatDate(publishedDate: string): string {
     const months = [
