@@ -43,7 +43,6 @@ export class CreateTweetComponent {
         next: (response) => {
           if (response.message) {
             this.tweetForm.reset();
-            this.feedService.setNewTweetPosted(true);
             this.feedService.refreshTweets();
             this.toastr.success(response.message);
           }

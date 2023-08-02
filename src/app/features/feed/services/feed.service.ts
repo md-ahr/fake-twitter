@@ -7,38 +7,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class FeedService {
-  private currentPage = 1;
-  private pageSize = 30;
-  private newTweetPosted: boolean = false;
-
   private refreshTweets$: Subject<void> = new Subject<void>();
   private tweets$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
   constructor(private http: HttpClient) {
     this.refreshTweets$.subscribe(() => {
       this.fetchTweets();
-      this.getNextTweetsPage();
     });
-  }
-
-  setNewTweetPosted(value: boolean) {
-    this.newTweetPosted = value;
-  }
-
-  isNewTweetPosted(): boolean {
-    return this.newTweetPosted;
-  }
-
-  getNextTweetsPage(): Observable<any> {
-    const url = `${environment.BASE_API_URL}/my-tweets?page=${this.currentPage}&size=${this.pageSize}`;
-    this.currentPage++;
-    return this.http
-      .get<any[]>(url)
-      .pipe(map((response: any) => response.my_tweets));
-  }
-
-  getPageSize(): number {
-    return this.pageSize;
   }
 
   getMyTweets(): Observable<any> {

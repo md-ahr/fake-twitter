@@ -17,24 +17,12 @@ export class HomeComponent implements OnInit {
   timelines: any[] = [];
   tweetCount: number = 0;
   timelineCount: number = 0;
-  private threshold = 200;
-  isLoading: boolean = false;
 
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
     private feedService: FeedService
   ) {}
-
-  loadNextPage(): void {
-    if (!this.isLoading && !this.feedService.isNewTweetPosted()) {
-      this.isLoading = true;
-      this.feedService.getNextTweetsPage().subscribe((tweetData) => {
-        this.tweets = [...this.tweets, ...tweetData];
-        this.isLoading = false;
-      });
-    }
-  }
 
   ngOnInit(): void {
     this.feedService.getMyTweets().subscribe((response) => {
@@ -50,17 +38,6 @@ export class HomeComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
-    if (
-      !this.isLoading &&
-      window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - this.threshold &&
-      this.tweets &&
-      this.tweets.length % this.feedService.getPageSize() === 0
-    ) {
-      this.threshold += 500;
-      this.loadNextPage();
-    }
-
     const shouldAddClass = window.scrollY > 80;
     const element = this.el.nativeElement.querySelector('.sticky-bar');
     if (shouldAddClass) {
