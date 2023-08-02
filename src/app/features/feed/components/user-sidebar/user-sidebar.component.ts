@@ -21,4 +21,8 @@ export class UserSidebarComponent implements OnInit {
       this.users = response.users;
     });
   }
+
+  findUsers() {
+    console.log(123);
+  }
 }
