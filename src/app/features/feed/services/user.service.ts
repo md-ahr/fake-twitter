@@ -31,6 +31,10 @@ export class UserService {
     );
   }
 
+  getUserBySearch(data: { token: string }): Observable<any> {
+    return this.http.post<any>(`${environment.BASE_API_URL}/search`, data);
+  }
+
   followUser(data: any): Observable<any> {
     return this.http.post<any>(`${environment.BASE_API_URL}/follow`, data);
   }

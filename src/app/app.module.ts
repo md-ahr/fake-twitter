@@ -25,7 +25,7 @@ import { AuthInterceptor } from './core/auth/auth.interceptor';
     ToastrModule.forRoot(),
     SharedModule,
     AuthModule,
-    FeedModule,
+    FeedModule
   ],
   providers: [
     CookieService,

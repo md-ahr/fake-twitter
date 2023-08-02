@@ -11,6 +11,7 @@ import { FeedComponent } from './components/feed.component';
 import { UserItemComponent } from './components/user-item/user-item.component';
 import { CreateTweetComponent } from './components/create-tweet/create-tweet.component';
 import { TweetItemComponent } from './components/tweet-item/tweet-item.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TweetItemComponent } from './components/tweet-item/tweet-item.component
     UserItemComponent,
     CreateTweetComponent,
     TweetItemComponent,
+    SearchResultComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, SharedModule, FeedRoutingModule],
   exports: [
@@ -33,6 +35,7 @@ import { TweetItemComponent } from './components/tweet-item/tweet-item.component
     UserItemComponent,
     CreateTweetComponent,
     TweetItemComponent,
+    SearchResultComponent,
   ],
 })
 export class FeedModule {}
