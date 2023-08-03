@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Subscribable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { UserService } from '../../services/user.service';
+import { FeedService } from './../../services/feed.service';
 
 @Component({
   selector: 'app-user-sidebar',
@@ -13,14 +14,19 @@ export class UserSidebarComponent implements OnInit {
   search = new FormControl();
 
   page: number = 1;
-  size: number = 6;
+  size: number = 3;
+  trendSize: number = 5;
   count: number = 0;
   users: any[] = [];
+  trends: any[] = [];
   searchResult: any[] = [];
   searchResultCount: number = 0;
   isSearchValueExist: boolean = false;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private feedService: FeedService
+  ) {
     this.search.valueChanges.pipe(debounceTime(300)).subscribe((value) => {
       if (value) {
         this.findUsers(value);
@@ -33,6 +39,12 @@ export class UserSidebarComponent implements OnInit {
       this.count = response.count;
       this.users = response.users;
     });
+
+    this.feedService
+      .getTimeline(this.page, this.trendSize)
+      .subscribe((response) => {
+        this.trends = response.timeline;
+      });
   }
 
   findUsers(value: string) {
