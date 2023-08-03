@@ -14,12 +14,17 @@ git clone https://github.com/md-ahr/fake-twitter.git
 cd fake-twitter
 ```
 
-### Install nodejs if not available in your machine
+### Install nodejs if not exist in your machine
 [install nodejs](https://nodejs.org/en)
 
 ### Install dependencies
 ```
 npm install
+```
+
+### Install angular cli if not exist in your machine
+```
+npm install -g @angular/cli
 ```
 
 ### Run project on local server
