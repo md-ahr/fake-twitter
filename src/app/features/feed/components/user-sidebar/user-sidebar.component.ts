@@ -22,6 +22,7 @@ export class UserSidebarComponent implements OnInit {
   searchResult: any[] = [];
   searchResultCount: number = 0;
   isSearchValueExist: boolean = false;
+  isUserRoute: boolean = false;
 
   constructor(
     private userService: UserService,

@@ -1,0 +1,36 @@
+<div class="py-[15px] min-h-screen">
+  <h4 class="sticky-bar mb-[15px] px-[20px] text-[20px] text-white font-bold flex items-center gap-8 sticky top-0 z-20">
+    <a routerLink="/home">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="w-[20px] invert">
+        <g>
+          <path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z">
+          </path>
+        </g>
+      </svg>
+    </a>
+    Explore
+  </h4>
+
+  <div class="mx-[15px] relative z-10">
+    <input type="text" [formControl]="search" name="search" id="search"
+      class="pl-[48px] pr-[4] bg-slate-900 rounded-full w-full h-[44px] text-[15px] text-white border-0 focus:ring-primary"
+      placeholder="Search Twitter">
+    <svg class="w-[18px] invert-[0.5] absolute top-[50%] left-[18px] translate-y-[-50%]" viewBox="0 0 24 24"
+      aria-hidden="true">
+      <g>
+        <path
+          d="M10.25 3.75c-3.59 0-6.5 2.91-6.5 6.5s2.91 6.5 6.5 6.5c1.795 0 3.419-.726 4.596-1.904 1.178-1.177 1.904-2.801 1.904-4.596 0-3.59-2.91-6.5-6.5-6.5zm-8.5 6.5c0-4.694 3.806-8.5 8.5-8.5s8.5 3.806 8.5 8.5c0 1.986-.682 3.815-1.824 5.262l4.781 4.781-1.414 1.414-4.781-4.781c-1.447 1.142-3.276 1.824-5.262 1.824-4.694 0-8.5-3.806-8.5-8.5z">
+        </path>
+      </g>
+    </svg>
+
+    <div *ngIf="isSearchValueExist" class="search-result">
+      <app-user-item *ngFor="let user of searchResult" [user]="user"
+        [isSearchValueExist]="isSearchValueExist"></app-user-item>
+    </div>
+  </div>
+
+  <p *ngIf="!isSearchValueExist" class="my-[30px] mx-[15px] text-gray-400 text-[17px] font-bold text-center">Try searching
+    for people
+  </p>
+</div>

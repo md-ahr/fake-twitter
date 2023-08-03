@@ -42,7 +42,7 @@ export class UsersComponent {
       this.loadNextPage();
     }
 
-    const shouldAddClass = window.scrollY > 80;
+    const shouldAddClass = window.scrollY > 60;
     const element = this.el.nativeElement.querySelector('.sticky-bar');
     if (shouldAddClass) {
       this.renderer.addClass(element, 'bg-gray-900');

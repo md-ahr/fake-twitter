@@ -31,14 +31,16 @@ export class HomeComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
-    const shouldAddClass = window.scrollY > 80;
+    const shouldAddClass = window.scrollY > 60;
     const element = this.el.nativeElement.querySelector('.sticky-bar');
     if (shouldAddClass) {
       this.renderer.addClass(element, 'bg-gray-900');
       this.renderer.addClass(element, 'transition');
       this.renderer.addClass(element, 'duration-300');
+      this.renderer.addClass(element, 'pt-[2px]');
     } else {
       this.renderer.removeClass(element, 'bg-gray-900');
+      this.renderer.removeClass(element, 'pt-[2px]');
     }
   }
 }
