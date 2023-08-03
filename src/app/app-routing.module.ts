@@ -5,7 +5,7 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { UsersComponent } from './features/feed/components/users/users.component';
 import { ExploreComponent } from './features/feed/components/explore/explore.component';
-import { ProfileComponent } from './features/feed/components/profile/profile.component';
+import { ProfileDetailsComponent } from './features/feed/components/profile-details/profile-details.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: AuthGuard ? 'home' : 'login' },
@@ -18,7 +18,11 @@ const routes: Routes = [
   },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
   { path: 'explore', component: ExploreComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  {
+    path: 'profile/:id',
+    component: ProfileDetailsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

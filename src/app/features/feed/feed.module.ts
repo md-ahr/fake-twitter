@@ -13,7 +13,7 @@ import { CreateTweetComponent } from './components/create-tweet/create-tweet.com
 import { TweetItemComponent } from './components/tweet-item/tweet-item.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ExploreComponent } from './components/explore/explore.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     TweetItemComponent,
     SearchResultComponent,
     ExploreComponent,
-    ProfileComponent,
+    ProfileDetailsComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, SharedModule, FeedRoutingModule],
   exports: [
@@ -41,7 +41,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     TweetItemComponent,
     SearchResultComponent,
     ExploreComponent,
-    ProfileComponent,
+    ProfileDetailsComponent,
   ],
 })
 export class FeedModule {}

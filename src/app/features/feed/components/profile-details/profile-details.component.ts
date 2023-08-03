@@ -1,13 +1,14 @@
 import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { initFlowbite } from 'flowbite';
-import { FeedService } from './../../services/feed.service';
+import { FeedService } from '../../services/feed.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
+  selector: 'app-details',
+  templateUrl: './profile-details.component.html',
+  styleUrls: ['./profile-details.component.css'],
 })
-export class ProfileComponent {
+export class ProfileDetailsComponent {
   myTweets: any[] = [];
   followings: any[] = [];
   followers: any[] = [];
@@ -18,6 +19,7 @@ export class ProfileComponent {
   joinDate!: string;
 
   constructor(
+    private route: ActivatedRoute,
     private el: ElementRef,
     private renderer: Renderer2,
     private feedService: FeedService
@@ -26,13 +28,14 @@ export class ProfileComponent {
   ngOnInit(): void {
     initFlowbite();
 
-    this.feedService.getMyTweets().subscribe((response) => {
-      this.myTweetsCount = response.count;
-      this.myTweets = response.my_tweets;
-      this.user = this.myTweets[0] && this.myTweets[0].user;
-      this.getFollowing(this.user?.id);
-      this.getFollowers(this.user?.id);
-      this.joinDate = this.myTweets[0] && new Date(this.myTweets[0].published).toLocaleDateString();
+    this.route.params.subscribe((params) => {
+      this.feedService.getTweetsById(+params['id']).subscribe((response) => {
+        this.myTweetsCount = response.count;
+        this.myTweets = response.tweets;
+        this.user = this.myTweets[0] && this.myTweets[0].user;
+      });
+      this.getFollowing(+params['id']);
+      this.getFollowers(+params['id']);
     });
   }
 

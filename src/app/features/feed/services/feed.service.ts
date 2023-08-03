@@ -84,4 +84,10 @@ export class FeedService {
       `${environment.BASE_API_URL}/users/${userId}/followers?page=${this.page}&size=${this.size}`
     );
   }
+
+  getTweetsById(userId: number) {
+    return this.http.get<any>(
+      `${environment.BASE_API_URL}/users/${userId}/tweets?page=${this.page}&size=${this.size}`
+    );
+  }
 }
