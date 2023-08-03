@@ -1,6 +1,6 @@
 <div class="py-[15px] min-h-screen">
   <h4
-    class="sticky-bar mb-[15px] px-[20px] text-[20px] text-white font-bold flex items-center gap-8 sticky top-0 z-20 capitalize">
+    class="sticky-bar mb-[15px] px-[15px] text-[20px] text-white font-bold flex items-center gap-8 sticky top-0 z-20 capitalize">
     <a routerLink="/home">
       <svg viewBox="0 0 24 24" aria-hidden="true" class="w-[20px] invert">
         <g>
@@ -59,19 +59,19 @@
     </div>
 
     <div id="myTabContent">
-      <div class="hidden p-4 rounded-lg bg-gray-800" id="tweets" role="tabpanel" aria-labelledby="tweets-tab">
+      <div class="hidden py-4 px-0 rounded-lg bg-gray-800" id="tweets" role="tabpanel" aria-labelledby="tweets-tab">
         <app-tweet-item *ngFor="let tweet of myTweets" [tweet]="tweet"></app-tweet-item>
         <div *ngIf="!myTweetsCount" class="p-[20px] pt-0 mt-5">
           <p class="text-gray-500 font-medium text-center">No tweets available right now</p>
         </div>
       </div>
-      <div class="hidden p-4 rounded-lg bg-gray-800" id="following" role="tabpanel" aria-labelledby="following-tab">
+      <div class="hidden py-4 px-0 rounded-lg bg-gray-800" id="following" role="tabpanel" aria-labelledby="following-tab">
         <app-user-item *ngFor="let user of followings" [user]="user"></app-user-item>
         <div *ngIf="!followingCount" class="p-[20px] pt-0 mt-5">
           <p class="text-gray-500 font-medium text-center">No following available right now</p>
         </div>
       </div>
-      <div class="hidden p-4 rounded-lg bg-gray-800" id="followers" role="tabpanel" aria-labelledby="followers-tab">
+      <div class="hidden py-4 px-0 p-4 rounded-lg bg-gray-800" id="followers" role="tabpanel" aria-labelledby="followers-tab">
         <app-user-item *ngFor="let user of followers" [user]="user"></app-user-item>
         <div *ngIf="!followersCount" class="p-[20px] pt-0 mt-5">
           <p class="text-gray-500 font-medium text-center">No followers available right now</p>

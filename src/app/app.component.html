@@ -3,19 +3,19 @@
 </div>
 
 <div *ngIf="isLoggedIn" class="bg-black min-h-screen">
-  <div class="app-container flex items-start flex-wrap">
+  <div class="app-container flex items-start flex-wrap justify-start">
     <!-- Menu Sidebar -->
-    <app-menu-sidebar class="pt-2 basis-[20%] sm:basis-[10%] xl:basis-[22%]"></app-menu-sidebar>
+    <app-menu-sidebar class="pt-2 w-[12%] sm:w-[10%] xl:w-[22%]"></app-menu-sidebar>
 
     <!-- Main Content -->
     <div
-      class="main-content basis-[calc(80%-10px)] sm:basis-[90%] lg:basis-[55%] xl:basis-[48%] border-l border-r border-slate-700">
+      class="ml-auto sm:ml-0 w-[calc(88%-10px)] sm:w-[90%] lg:w-[55%] xl:w-[48%] border-l border-r border-slate-700">
       <router-outlet></router-outlet>
     </div>
 
     <!-- User Sidebar -->
     <app-user-sidebar
-      class="pt-2 hidden lg:block basis-[calc(20%-20px)] xl:basis-[calc(28%-20px)] 2xl:basis-[calc(28%-30px)] ml-0 lg:ml-[20px] 2xl:ml-[30px]"></app-user-sidebar>
+      class="pt-2 hidden lg:block w-[calc(20%-20px)] xl:w-[calc(28%-20px)] 2xl:w-[calc(28%-30px)] ml-0 lg:ml-[20px] 2xl:ml-[30px]"></app-user-sidebar>
   </div>
 </div>
 
