@@ -1,23 +1,29 @@
-import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subscribable } from 'rxjs';
+import { Observable, Subscribable, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { FeedService } from './../../services/feed.service';
+import { SharedService } from './../../services/shared.service';
 
 @Component({
   selector: 'app-create-tweet',
   templateUrl: './create-tweet.component.html',
   styleUrls: ['./create-tweet.component.css'],
 })
-export class CreateTweetComponent {
+export class CreateTweetComponent implements OnDestroy {
   tweetForm: FormGroup;
   tweets$!: Observable<any[]>;
   isBtnEnabled: boolean = false;
 
+  private tweetBtnSubscription!: Subscription;
+
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private feedService: FeedService
+    private feedService: FeedService,
+    private sharedService: SharedService,
+    private el: ElementRef
   ) {
     this.tweetForm = this.formBuilder.group({
       content: ['', Validators.required],
@@ -26,6 +32,14 @@ export class CreateTweetComponent {
     if (this.tweetForm.valid) {
       this.isBtnEnabled = true;
     }
+
+    this.tweetBtnSubscription = this.sharedService.tweetBtnTrigger$.subscribe(
+      (success) => {
+        if (success) {
+          this.el.nativeElement.querySelector('#content')?.focus();
+        }
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -52,5 +66,9 @@ export class CreateTweetComponent {
         },
       });
     }
+  }
+
+  ngOnDestroy() {
+    this.tweetBtnSubscription.unsubscribe();
   }
 }
