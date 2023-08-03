@@ -13,9 +13,7 @@ import { FeedService } from '../../services/feed.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  tweets: any[] = [];
   timelines: any[] = [];
-  tweetCount: number = 0;
   timelineCount: number = 0;
 
   constructor(
@@ -25,11 +23,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.feedService.getMyTweets().subscribe((response) => {
-      this.tweetCount = response.count;
-      this.tweets = response.my_tweets;
-    });
-
     this.feedService.getTimeline().subscribe((response) => {
       this.timelineCount = response.count;
       this.timelines = response.timeline;
