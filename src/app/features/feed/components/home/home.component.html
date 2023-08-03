@@ -10,6 +10,7 @@
   <div *ngIf="tweets" class="mt-0">
     <app-tweet-item *ngFor="let tweet of tweets" [tweet]="tweet"></app-tweet-item>
   </div>
+  <p *ngIf="isLoadingMore" class="text-white font-bold text-center">Loading...</p>
 
   <div *ngIf="tweets.length < 1" class="p-[20px] pt-0 mt-5">
     <p class="text-gray-500 font-medium text-center">No tweets available right now</p>

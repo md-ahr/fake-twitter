@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  BehaviorSubject,
-  Observable,
-  Subject,
-  catchError,
-  forkJoin,
-  of,
-} from 'rxjs';
+import { BehaviorSubject, Observable, Subject, forkJoin } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -44,13 +37,42 @@ export class FeedService {
     this.refreshTweets$.next();
   }
 
+  // private fetchTweets() {
+  //   const myTweets$ = this.http.get<{ my_tweets: any[] }>(
+  //     `${environment.BASE_API_URL}/my-tweets`
+  //   );
+
+  //   const timeline$ = this.http.get<{ timeline: any[] }>(
+  //     `${environment.BASE_API_URL}/timeline`
+  //   );
+
+  //   forkJoin([myTweets$, timeline$]).subscribe(
+  //     ([myTweetsResponse, timelineResponse]) => {
+  //       const myTweets = Array.isArray(myTweetsResponse.my_tweets)
+  //         ? myTweetsResponse.my_tweets
+  //         : [];
+
+  //       const timelineTweets = Array.isArray(timelineResponse.timeline)
+  //         ? timelineResponse.timeline
+  //         : [];
+
+  //       const combinedTweets = [...myTweets, ...timelineTweets];
+  //       this.tweets$.next(combinedTweets);
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching tweets:', error);
+  //       this.tweets$.next([]);
+  //     }
+  //   );
+  // }
+
   private fetchTweets() {
     const myTweets$ = this.http.get<{ my_tweets: any[] }>(
-      `${environment.BASE_API_URL}/my-tweets`
+      `${environment.BASE_API_URL}/my-tweets?page=${this.page}&size=${this.size}`
     );
 
     const timeline$ = this.http.get<{ timeline: any[] }>(
-      `${environment.BASE_API_URL}/timeline`
+      `${environment.BASE_API_URL}/timeline?page=${this.page}&size=${this.size}`
     );
 
     forkJoin([myTweets$, timeline$]).subscribe(
@@ -64,13 +86,22 @@ export class FeedService {
           : [];
 
         const combinedTweets = [...myTweets, ...timelineTweets];
-        this.tweets$.next(combinedTweets);
+        this.tweets$.next(
+          this.page === 1
+            ? combinedTweets
+            : [...this.tweets$.getValue(), ...combinedTweets]
+        );
       },
       (error) => {
         console.error('Error fetching tweets:', error);
         this.tweets$.next([]);
       }
     );
+  }
+
+  loadMoreTweets() {
+    this.page++;
+    this.fetchTweets();
   }
 
   getFollowing(userId: number) {

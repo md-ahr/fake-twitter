@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   tweets$!: Observable<any[]>;
 
   tweets: any[] = [];
+  isLoadingMore = false;
 
   constructor(
     private el: ElementRef,
@@ -28,10 +29,41 @@ export class HomeComponent implements OnInit {
     this.feedService.getTimeline().subscribe((response) => {
       this.tweets = response;
     });
+
+    this.loadTweets();
+    this.tweets$ = this.feedService.getTimeline();
+  }
+
+  loadTweets() {
+    this.feedService.refreshTweets();
+  }
+
+  loadMoreTweets() {
+    this.isLoadingMore = true;
+    this.feedService.loadMoreTweets();
+    this.isLoadingMore = false;
   }
 
   @HostListener('window:scroll', [])
   onScroll(): void {
+    const windowHeight =
+      'innerHeight' in window
+        ? window.innerHeight
+        : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight && !this.isLoadingMore) {
+      this.loadMoreTweets();
+    }
+
     const shouldAddClass = window.scrollY > 60;
     const element = this.el.nativeElement.querySelector('.sticky-bar');
     if (shouldAddClass) {

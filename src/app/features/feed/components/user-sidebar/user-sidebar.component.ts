@@ -40,11 +40,9 @@ export class UserSidebarComponent implements OnInit {
       this.users = response.users;
     });
 
-    this.feedService
-      .getTimeline()
-      .subscribe((response) => {
-        this.trends = response.timeline?.slice(0, 5);
-      });
+    this.feedService.getTimeline().subscribe((response) => {
+      this.trends = response.slice(0, 5);
+    });
   }
 
   findUsers(value: string) {
