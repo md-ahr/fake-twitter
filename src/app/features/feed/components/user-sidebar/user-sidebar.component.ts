@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscribable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -24,7 +24,6 @@ export class UserSidebarComponent implements OnInit {
     this.search.valueChanges.pipe(debounceTime(300)).subscribe((value) => {
       if (value) {
         this.findUsers(value);
-        this.isSearchValueExist = true;
       }
     });
   }
@@ -49,11 +48,22 @@ export class UserSidebarComponent implements OnInit {
         if (response.count) {
           this.searchResultCount = response.count;
           this.searchResult = response.search_results;
+          this.isSearchValueExist = true;
         }
       },
       error: (err) => {
-        console.log(err);
+        this.isSearchValueExist = false;
       },
     });
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const clickedElement = event.target as HTMLElement;
+    const sectionElement = document.querySelector('.search-result');
+
+    if (!sectionElement!.contains(clickedElement)) {
+      this.isSearchValueExist = false;
+    }
   }
 }

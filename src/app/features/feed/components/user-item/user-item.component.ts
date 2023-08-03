@@ -10,6 +10,7 @@ import { UserService } from './../../services/user.service';
 })
 export class UserItemComponent {
   @Input() user: any;
+  @Input() isSearchValueExist: any;
 
   userId!: number;
   isFollowed: boolean = false;
