@@ -5,6 +5,7 @@ import {
   ElementRef,
   Renderer2,
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FeedService } from '../../services/feed.service';
 
 @Component({
@@ -13,8 +14,9 @@ import { FeedService } from '../../services/feed.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  timelines: any[] = [];
-  timelineCount: number = 0;
+  tweets$!: Observable<any[]>;
+
+  tweets: any[] = [];
 
   constructor(
     private el: ElementRef,
@@ -24,8 +26,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.feedService.getTimeline().subscribe((response) => {
-      this.timelineCount = response.count;
-      this.timelines = response.timeline;
+      this.tweets = response;
     });
   }
 

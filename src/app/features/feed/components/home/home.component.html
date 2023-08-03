@@ -7,11 +7,12 @@
   <app-create-tweet></app-create-tweet>
 
   <!-- Tweet List -->
-  <div class="mt-0">
-    <app-tweet-item *ngFor="let tweet of timelines" [tweet]="tweet"></app-tweet-item>
-    <div *ngIf="!timelineCount" class="p-[20px] pt-0 mt-5">
-      <p class="text-gray-500 font-medium text-center">No tweets available right now</p>
-    </div>
+  <div *ngIf="tweets" class="mt-0">
+    <app-tweet-item *ngFor="let tweet of tweets" [tweet]="tweet"></app-tweet-item>
+  </div>
+
+  <div *ngIf="tweets.length < 1" class="p-[20px] pt-0 mt-5">
+    <p class="text-gray-500 font-medium text-center">No tweets available right now</p>
   </div>
 
 </div>

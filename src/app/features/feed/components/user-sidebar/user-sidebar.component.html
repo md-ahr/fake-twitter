@@ -17,7 +17,7 @@
       [isSearchValueExist]="isSearchValueExist"></app-search-result>
   </div>
 
-  <div class="pt-3 bg-slate-900 rounded-[16px]">
+  <div *ngIf="trends && trends.length > 0" class="pt-3 bg-slate-900 rounded-[16px]">
     <h4 class="px-5 text-white font-bold text-[20px]">Trends for you</h4>
     <div class="px-2">
       <app-tweet-item *ngFor="let trend of trends" [tweet]="trend"></app-tweet-item>

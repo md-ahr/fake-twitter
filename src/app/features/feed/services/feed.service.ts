@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, map } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  catchError,
+  forkJoin,
+  of,
+} from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -23,6 +30,12 @@ export class FeedService {
     return this.tweets$.asObservable();
   }
 
+  getMyTweets(): Observable<any> {
+    return this.http.get<any>(
+      `${environment.BASE_API_URL}/my-tweets?page=${this.page}&size=${this.size}`
+    );
+  }
+
   postTweet(data: unknown) {
     return this.http.post<any>(`${environment.BASE_API_URL}/tweet`, data);
   }
@@ -32,10 +45,43 @@ export class FeedService {
   }
 
   private fetchTweets() {
-    this.http
-      .get<any[]>(`${environment.BASE_API_URL}/timeline`)
-      .subscribe((tweets) => {
-        this.tweets$.next(tweets);
-      });
+    const myTweets$ = this.http.get<{ my_tweets: any[] }>(
+      `${environment.BASE_API_URL}/my-tweets`
+    );
+
+    const timeline$ = this.http.get<{ timeline: any[] }>(
+      `${environment.BASE_API_URL}/timeline`
+    );
+
+    forkJoin([myTweets$, timeline$]).subscribe(
+      ([myTweetsResponse, timelineResponse]) => {
+        const myTweets = Array.isArray(myTweetsResponse.my_tweets)
+          ? myTweetsResponse.my_tweets
+          : [];
+
+        const timelineTweets = Array.isArray(timelineResponse.timeline)
+          ? timelineResponse.timeline
+          : [];
+
+        const combinedTweets = [...myTweets, ...timelineTweets];
+        this.tweets$.next(combinedTweets);
+      },
+      (error) => {
+        console.error('Error fetching tweets:', error);
+        this.tweets$.next([]);
+      }
+    );
+  }
+
+  getFollowing(userId: number) {
+    return this.http.get<any>(
+      `${environment.BASE_API_URL}/users/${userId}/following?page=${this.page}&size=${this.size}`
+    );
+  }
+
+  getFollowers(userId: number) {
+    return this.http.get<any>(
+      `${environment.BASE_API_URL}/users/${userId}/followers?page=${this.page}&size=${this.size}`
+    );
   }
 }

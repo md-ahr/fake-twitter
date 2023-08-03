@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscribable, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -38,8 +38,8 @@ export class CreateTweetComponent implements OnDestroy {
   }
 
   ngOnInit(): void {
-    this.tweets$ = this.feedService.getTimeline();
     this.feedService.refreshTweets();
+    this.tweets$ = this.feedService.getTimeline();
   }
 
   createTweet() {
