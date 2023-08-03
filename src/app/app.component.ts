@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { initFlowbite } from 'flowbite';
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private tokenSubscription!: Subscription;
 
   constructor(
+    private router: Router,
     private cookieService: CookieService,
     private authService: AuthService
   ) {}
@@ -30,6 +32,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
     if (this.tokenFromCookie) {
       this.isLoggedIn = true;
+
+      if (window.location.pathname === '/login') {
+        this.router.navigateByUrl('/home');
+      }
     }
   }
 
