@@ -14,7 +14,6 @@ import { SharedService } from './../../services/shared.service';
 export class CreateTweetComponent implements OnDestroy {
   tweetForm: FormGroup;
   tweets$!: Observable<any[]>;
-  isBtnEnabled: boolean = false;
 
   private tweetBtnSubscription!: Subscription;
 
@@ -29,10 +28,6 @@ export class CreateTweetComponent implements OnDestroy {
       content: ['', Validators.required],
     });
 
-    if (this.tweetForm.valid) {
-      this.isBtnEnabled = true;
-    }
-
     this.tweetBtnSubscription = this.sharedService.tweetBtnTrigger$.subscribe(
       (success) => {
         if (success) {
@@ -43,11 +38,11 @@ export class CreateTweetComponent implements OnDestroy {
   }
 
   ngOnInit(): void {
-    this.tweets$ = this.feedService.getMyTweets();
+    this.tweets$ = this.feedService.getTimeline();
     this.feedService.refreshTweets();
   }
 
-  postTweet() {
+  createTweet() {
     if (this.tweetForm.valid) {
       const tweetSubscribable: Subscribable<any> = this.feedService.postTweet(
         this.tweetForm.value

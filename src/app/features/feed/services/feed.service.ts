@@ -19,7 +19,7 @@ export class FeedService {
     });
   }
 
-  getMyTweets(): Observable<any> {
+  getTimeline(): Observable<any> {
     return this.tweets$.asObservable();
   }
 
@@ -33,18 +33,9 @@ export class FeedService {
 
   private fetchTweets() {
     this.http
-      .get<any[]>(`${environment.BASE_API_URL}/my-tweets`)
+      .get<any[]>(`${environment.BASE_API_URL}/timeline`)
       .subscribe((tweets) => {
         this.tweets$.next(tweets);
       });
-  }
-
-  getTimeline(
-    page: number = this.page,
-    size: number = this.size
-  ): Observable<any> {
-    return this.http.get<any>(
-      `${environment.BASE_API_URL}/timeline?page=${page}&size=${size}`
-    );
   }
 }

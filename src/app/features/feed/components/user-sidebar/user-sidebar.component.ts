@@ -15,7 +15,6 @@ export class UserSidebarComponent implements OnInit {
 
   page: number = 1;
   size: number = 3;
-  trendSize: number = 5;
   count: number = 0;
   users: any[] = [];
   trends: any[] = [];
@@ -42,9 +41,9 @@ export class UserSidebarComponent implements OnInit {
     });
 
     this.feedService
-      .getTimeline(this.page, this.trendSize)
+      .getTimeline()
       .subscribe((response) => {
-        this.trends = response.timeline;
+        this.trends = response.timeline?.slice(0, 5);
       });
   }
 

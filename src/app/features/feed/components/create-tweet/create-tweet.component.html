@@ -1,4 +1,4 @@
-<form [formGroup]="tweetForm" (ngSubmit)="postTweet()" class="pb-4 border-b border-slate-700 order-1 relative z-10">
+<form [formGroup]="tweetForm" (ngSubmit)="createTweet()" class="pb-4 border-b border-slate-700 order-1 relative z-10">
   <div class="px-[20px] py-0 flex items-start gap-[15px]">
     <svg class="w-[45px] invert" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
       viewBox="0 0 20 20">
@@ -10,7 +10,7 @@
       placeholder="What is happening?!"></textarea>
   </div>
   <div class="px-[20px] mt-3 text-right">
-    <button type="submit" [disabled]="!tweetForm.valid || !isBtnEnabled"
+    <button type="submit" [disabled]="!tweetForm.valid"
       class="w-[75px] h-[36px] text-[15px] font-bold rounded-full bg-primary text-white hover:bg-blue-500 transition duration-300"
       [ngClass]="{
         'cursor-not-allowed': !tweetForm.valid,
